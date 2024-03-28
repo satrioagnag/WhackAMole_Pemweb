@@ -10,6 +10,7 @@ document.addEventListener(
 		document.getElementById("score"); 
 	const timerDisplay = 
 		document.getElementById("timer"); 
+	const cursor = document.querySelector('.cursor')
 
 	let timer; 
 	let score = 0; 
