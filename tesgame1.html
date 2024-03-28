@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Tes Game 1</title>
+    
+</head>
+<body>
+    <canvas  id="canvas1" width="600" height="400" style="border: 1px solid aqua;">
+    </canvas>
+    
+    <script>
+        var canvas = document.getElementById("canvas1");
+        var ctx =  canvas.getContext("2d");
+        var ballRadius = 10;
+
+        ctx.fillStyle = "#FF0054";
+        ctx.fillRect (0,0,150,75);
+
+        ctx.moveTo(0,0);
+        ctx.lineTo(600,400);
+
+        ctx.stroke();
+
+        function drawball(){
+    ctx.beginPath();
+    ctx.arc(x, y, ballRadius, 0, Math.PI*2);
+    ctx.fillStyle = "#ff0000";
+    ctx.fill();
+    ctx.closePath();
+}
+
+        function draw() {
+            
+        }
+        setInterval(draw, 10);
+    </script>
+</body>
+</html>

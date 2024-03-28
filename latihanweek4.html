@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>PEMWEB HTML WEEK 4</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+            border: black solid ;
+        }
+
+        header {
+            border-bottom: black solid;
+            background-color: #0B60B0;
+            opacity: 50%;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            display: block;
+            position: relative;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .sidebar {
+            background-color: #40A2D8;
+            opacity: 80%;
+            color: white;
+            width: 150px;
+            padding: 20px;
+            float: left;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            border-right: black solid;
+        }
+
+        .content {
+            padding: 20px;
+            width: calc(100% - 250px);
+            margin-left: 200px;
+        }
+
+        .columns {
+            margin: 10px;
+            padding: left 10px;
+            float: left;
+            width: 30%;
+            text-align: center;
+            border: black solid 1px;
+        }
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .content img {
+            align-items: center;
+        }
+
+        footer {
+            background-color: #0B60B0;
+            opacity: 50%;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>3 Latest DAY6's Album</h1>
+    </header>
+
+    <main>
+        <div class="sidebar">
+            <h2>Menu</h2>
+            <ul>
+                <li>Home</li>
+                <br>
+                <li>About</li>
+                <br>
+                <li>Login/Sign Up</li>
+                <br>
+                <li>Contact</li>
+                <br>
+            </ul>
+        </div>
+
+        <div class="content">
+
+            <div class="row">
+                <div class="columns" style="border: white solid 1px;">
+                    <img src="DAY6_-_The_Book_of_Us_Entropy_digital_cover.jpg" alt="Entropy" style="width: 300px;">
+                </div>
+                <div class="columns" style="border: white solid 1px;">
+                    <img src="DAY6_-_The_Book_of_Us_The_Demon_digital_cover.jpg" alt="The Demon" style="width: 300px;">
+                </div>
+                <div class="columns" style="border: white solid 1px;">
+                    <img src="DAY6_-_The_Book_of_Us_Negentropy_digital_cover.jpg" alt="Negentropy"
+                        style="width: 300px;">
+                </div>
+            </div>
+            <div class="row">
+                <div class="columns" style="background-color: aqua;">
+                    The Book of Us : Entropy is the third Korean studio album of DAY6. It was released on October 22,
+                    2019 with "Sweet Chaos" being the promotional title track and in two physical CD only editions:
+                    Sweet ver. and Chaos ver.
+                </div>
+                <div class="columns" style="background-color: aquamarine;">
+                    The Book of Us : The Demon is the sixth Korean studio album of DAY6. It was released on May 11, 2020
+                    with "Zombie" being the promotional title track and in two physical CD only editions: MIDDAY Ver.
+                    and MIDNIGHT Ver.
+                </div>
+                <div class="columns" style="background-color: cadetblue;">
+                    The Book of Us : Negentropy - Chaos swallowed up in love (or simply The Book of Us : Negentropy) is
+                    the seventh Korean mini-album of DAY6. It was released on April 19, 2021 with "You make Me" serving
+                    as the promotional title track. The physical album was released in two types: One& version and Only
+                    version.
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>
