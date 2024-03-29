@@ -1,94 +1,96 @@
-body { 
+body {
 	background-color: rgb(190, 105, 0);
 	background-image: url(bg.jpg);
 	background-position: center;
 	background-size: 100%;
-	display: flex; 
-	flex-direction: column; 
-	align-items: center; 
-	justify-content: center; 
-} 
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
 
-.game-info { 
-	display: flex; 
-	flex-direction: column; 
-	align-items: center; 
-	justify-content: center; 
-	margin: 20px; 
-} 
+.game-info {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin: 20px;
+}
 
-#startButton { 
-	margin-bottom: 20px; 
-	padding: 10px; 
-	font-size: 16px; 
-	
-} 
+#startButton {
+	margin-bottom: 20px;
+	padding: 10px;
+	font-size: 16px;
+	cursor: pointer;
+}
 
-#endButton { 
-	margin-bottom: 20px; 
-	padding: 10px; 
-	font-size: 16px; 
-	
-} 
+#endButton {
+	margin-bottom: 20px;
+	padding: 10px;
+	font-size: 16px;
+	cursor: pointer;
+}
 
-.game-container { 
-	background-color: rgba(0, 128, 0, 0.397) ; 
-	display: grid; 
-	grid-template-columns: repeat(3, 160px); 
-	gap: 10px; 
-	border: 2px solid rgb(216, 216, 216); 
-	padding: 20px; 
-	border-radius: 10px; 
-	
+.game-container {
+	background-color: rgba(0, 128, 0, 0.397);
+	display: grid;
+	grid-template-columns: repeat(3, 160px);
+	gap: 10px;
+	border: 3px solid rgb(255, 255, 255);
+	padding: 20px;
+	border-radius: 10px;
 
-} 
+}
 
-.hole { 
-	height: 150px; 
-	background: rgb(19, 55, 139); 
-	border: 5px solid rgb(30, 30, 30); 
-	cursor: cursor; 
-	border-radius: 100px; 
-} 
+.hole {
+	height: 150px;
+	background: rgb(184, 229, 72);
+	border: 2px solid #1d4d24;
+	cursor: cursor;
+	border-radius: 100px;
+	box-shadow: inset 0 10px 0 7px rgba(0, 98, 0, 0.397),
+				inset 0 20px 20px 15px rgb(0, 0, 0, .3),
+				0 0 5px rgba(0, 0, 0, .5);
+}
 
-.mole { 
-	background-size: 150px; 
+.mole {
+	background-size: 143px;
 	background-image: url("iyok.png"), url("ipul.png")
-} 
-
-.cursor{
-    height: 110px;
-    width: 100px;
-    position: absolute;
-    top: 100px;
-    left: 100px;
-    background-image: url("nay.png");
-    background-size: 100% 100%;
-    transform: translate(-20%, -20%);
-    transition: transform .1s;
-    pointer-events: none;
-}
-.cursor.active{
-    transform: translate(-20%, -20%) rotate(-45deg);
 }
 
-@media only screen and (max-width: 600px) { 
-	.game-container { 
-		width: 80%; 
-		gap: 10px; 
-		padding: 5%; 
-		grid-template-columns: repeat(3, 38%); 
-	} 
+.cursor {
+	height: 110px;
+	width: 100px;
+	position: absolute;
+	top: 100px;
+	left: 100px;
+	background-image: url('nay.png');
+	background-size: 120% 120%;
+	transform: translate(-20%, -20%);
+	transition: transform .1s;
+	pointer-events: none;
+}
 
-	.hole { 
-		height: 50px; 
-		width: 50px; 
-		border-radius: 100px; 
-	} 
+.cursor.active {
+	transform: translate(-20%, -20%) rotate(-45deg);
+}
 
-	.mole { 
-		background-size: 50px; 
-		background-image: url( 
-"https://media.geeksforgeeks.org/wp-content/uploads/20231130123541/mole.png") 
-	} 
+@media only screen and (max-width: 600px) {
+	.game-container {
+		width: 80%;
+		gap: 10px;
+		padding: 5%;
+		grid-template-columns: repeat(3, 38%);
+	}
+
+	.hole {
+		height: 50px;
+		width: 50px;
+		border-radius: 100px;
+	}
+
+	.mole {
+		background-size: 50px;
+		background-image: url("https://media.geeksforgeeks.org/wp-content/uploads/20231130123541/mole.png")
+	}
 }
