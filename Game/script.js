@@ -1,96 +1,107 @@
-document.addEventListener( 
-	"DOMContentLoaded", function () { 
-	const holes = 
-		document.querySelectorAll(".hole"); 
-	const startButton = 
-		document.getElementById("startButton"); 
-	const endButton = 
-		document.getElementById("endButton"); 
-	const scoreDisplay = 
-		document.getElementById("score"); 
-	const timerDisplay = 
-		document.getElementById("timer"); 
-	const cursor = document.querySelector('.cursor')
 
-	let timer; 
-	let score = 0; 
-	let countdown; 
-	let moleInterval; 
-	
-	// Set the initial state to game over 
-	let gameOver = true; 
+document.addEventListener(
+	"DOMContentLoaded", function () {
+		const holes =
+			document.querySelectorAll(".hole");
+		const startButton =
+			document.getElementById("startButton");
+		const endButton =
+			document.getElementById("endButton");
+		const scoreDisplay =
+			document.getElementById("score");
+		const timerDisplay =
+			document.getElementById("timer");
+		const cursor = document.querySelector('.cursor')
+		window.addEventListener('mousemove', e => {
+			cursor.style.top = e.pageY + 'px'
+			cursor.style.left = e.pageX + 'px'
+		})
+		window.addEventListener('mousedown', () => {
+			cursor.classList.add('active')
+		})
+		window.addEventListener('mouseup', () => {
+			cursor.classList.remove ('active')
+		})
 
-	function comeout() { 
-		holes.forEach(hole => { 
-			hole.classList.remove('mole'); 
-			hole.removeEventListener( 
-				'click', handleMoleClick); 
-		}); 
+		let timer;
+		let score = 0;
+		let countdown;
+		let moleInterval;
 
-		let random = holes[Math.floor(Math.random() * 9)]; 
+		// Set the initial state to game over 
+		let gameOver = true;
 
-		random.classList.add('mole'); 
-		random.addEventListener('click', handleMoleClick); 
-	} 
+		function comeout() {
+			holes.forEach(hole => {
+				hole.classList.remove('mole');
+				hole.removeEventListener(
+					'click', handleMoleClick);
+			});
 
-	function handleMoleClick() { 
-		if (!gameOver) { 
-			score++; 
-			scoreDisplay.textContent = `Score: ${score}`; 
-		} 
-		this.classList.remove('mole'); 
-	} 
+			let random = holes[Math.floor(Math.random() * 9)];
 
-	function startGame() { 
-		if (!gameOver) { 
-		
-			// Prevent starting the game 
-			// again if it's already in progress 
-			return; 
-		} 
+			random.classList.add('mole');
+			random.addEventListener('click', handleMoleClick);
+		}
 
-		gameOver = false; 
-		score = 0; 
-		scoreDisplay.textContent = `Score: ${score}`; 
-		timer = 60; 
-		timerDisplay.textContent = `Time: ${timer}s`; 
+		function handleMoleClick() {
+			if (!gameOver) {
+				score++;
+				scoreDisplay.textContent = `Score: ${score}`;
+			}
+			this.classList.remove('mole');
+		}
 
-		startButton.disabled = true; 
-		endButton.disabled = false; 
+		function startGame() {
+			if (!gameOver) {
 
-		countdown = setInterval(() => { 
-			timer--; 
-			timerDisplay.textContent = `Time: ${timer}s`; 
+				// Prevent starting the game 
+				// again if it's already in progress 
+				return;
+			}
 
-			if (timer <= 0) { 
-				clearInterval(countdown); 
-				gameOver = true; 
-				alert(`Game Over!\nYour final score: ${score}`); 
-				startButton.disabled = false; 
-				endButton.disabled = true; 
-			} 
-		}, 1000); 
+			gameOver = false;
+			score = 0;
+			scoreDisplay.textContent = `Score: ${score}`;
+			timer = 60;
+			timerDisplay.textContent = `Time: ${timer}s`;
 
-		moleInterval = setInterval(() => { 
-			if (!gameOver) comeout(); 
-		}, 1000); 
+			startButton.disabled = true;
+			endButton.disabled = false;
 
-		console.log("Game started"); 
-	} 
+			countdown = setInterval(() => {
+				timer--;
+				timerDisplay.textContent = `Time: ${timer}s`;
 
-	function endGame() { 
-		clearInterval(countdown); 
-		clearInterval(moleInterval); 
-		gameOver = true; 
-		alert(`Game Ended!\nYour final score: ${score}`); 
-		score = 0; 
-		timer = 60; 
-		scoreDisplay.textContent = `Score: ${score}`; 
-		timerDisplay.textContent = `Time: ${timer}s`; 
-		startButton.disabled = false; 
-		endButton.disabled = true; 
-	} 
+				if (timer <= 0) {
+					clearInterval(countdown);
+					gameOver = true;
+					alert(`Game Over!\nYour final score: ${score}`);
+					startButton.disabled = false;
+					endButton.disabled = true;
+				}
+			}, 1000);
 
-	startButton.addEventListener("click", startGame); 
-	endButton.addEventListener("click", endGame); 
-});
+			moleInterval = setInterval(() => {
+				if (!gameOver) comeout();
+			}, 1000);
+
+			console.log("Game started");
+		}
+
+		function endGame() {
+			clearInterval(countdown);
+			clearInterval(moleInterval);
+			gameOver = true;
+			alert(`Game Ended!\nYour final score: ${score}`);
+			score = 0;
+			timer = 60;
+			scoreDisplay.textContent = `Score: ${score}`;
+			timerDisplay.textContent = `Time: ${timer}s`;
+			startButton.disabled = false;
+			endButton.disabled = true;
+		}
+
+		startButton.addEventListener("click", startGame);
+		endButton.addEventListener("click", endGame);
+	});
