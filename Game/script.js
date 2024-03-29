@@ -11,13 +11,20 @@ document.addEventListener(
 			document.getElementById("score");
 		const timerDisplay =
 			document.getElementById("timer");
-		const cursor = document.querySelector('.cursor')
+		const cursor = 
+			document.querySelector('.cursor')
+		const clickSound = 
+			document.getElementById('click-sound');
+    	const gameContainer = 
+			document.querySelector('.game-container');
+
 		window.addEventListener('mousemove', e => {
 			cursor.style.top = e.pageY + 'px'
 			cursor.style.left = e.pageX + 'px'
 		})
 		window.addEventListener('mousedown', () => {
 			cursor.classList.add('active')
+			clickSound.play()
 		})
 		window.addEventListener('mouseup', () => {
 			cursor.classList.remove ('active')

@@ -30,6 +30,11 @@ body {
 	font-size: 16px;
 	cursor: pointer;
 }
+#audio {
+	
+    display: none;
+}
+
 
 .game-container {
 	background-color: rgba(0, 128, 0, 0.397);
@@ -73,6 +78,7 @@ body {
 
 .cursor.active {
 	transform: translate(-20%, -20%) rotate(-45deg);
+	
 }
 
 @media only screen and (max-width: 600px) {
