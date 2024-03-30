@@ -46,8 +46,12 @@ document.addEventListener(
 			});
 
 			let random = holes[Math.floor(Math.random() * 9)];
-
+			
 			random.classList.add('mole');
+
+			let randomImage = Math.random() < 0.5 ? "iyok.png" : "ipul.png";
+    		random.style.backgroundImage = `url("${randomImage}")`;
+
 			random.addEventListener('click', handleMoleClick);
 		}
 
