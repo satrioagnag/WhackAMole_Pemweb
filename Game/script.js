@@ -1,118 +1,113 @@
+document.addEventListener("DOMContentLoaded", function () {
+  const holes = document.querySelectorAll(".hole");
+  const startButton = document.getElementById("startButton");
+  const endButton = document.getElementById("endButton");
+  const scoreDisplay = document.getElementById("score");
+  const highscoreDisplay = document.getElementById("highscore");
+  const timerDisplay = document.getElementById("timer");
+  const cursor = document.querySelector(".cursor");
+  const clickSound = document.getElementById("click-sound");
+  const gameContainer = document.querySelector(".game-container");
 
-document.addEventListener(
-	"DOMContentLoaded", function () {
-		const holes =
-			document.querySelectorAll(".hole");
-		const startButton =
-			document.getElementById("startButton");
-		const endButton =
-			document.getElementById("endButton");
-		const scoreDisplay =
-			document.getElementById("score");
-		const timerDisplay =
-			document.getElementById("timer");
-		const cursor = 
-			document.querySelector('.cursor')
-		const clickSound = 
-			document.getElementById('click-sound');
-    	const gameContainer = 
-			document.querySelector('.game-container');
+  window.addEventListener("mousemove", (e) => {
+    cursor.style.top = e.pageY + "px";
+    cursor.style.left = e.pageX + "px";
+  });
+  window.addEventListener("mousedown", () => {
+    cursor.classList.add("active");
+    clickSound.play();
+  });
+  window.addEventListener("mouseup", () => {
+    cursor.classList.remove("active");
+  });
 
-		window.addEventListener('mousemove', e => {
-			cursor.style.top = e.pageY + 'px'
-			cursor.style.left = e.pageX + 'px'
-		})
-		window.addEventListener('mousedown', () => {
-			cursor.classList.add('active')
-			clickSound.play()
-		})
-		window.addEventListener('mouseup', () => {
-			cursor.classList.remove ('active')
-		})
+  let timer;
+  let score = 0;
+  let countdown;
+  let moleInterval;
+  let highscore = 0;
 
-		let timer;
-		let score = 0;
-		let countdown;
-		let moleInterval;
+  // Set the initial state to game over
+  let gameOver = true;
 
-		// Set the initial state to game over 
-		let gameOver = true;
+  function comeout() {
+    holes.forEach((hole) => {
+      hole.classList.remove("mole");
+      hole.removeEventListener("click", handleMoleClick);
+    });
 
-		function comeout() {
-			holes.forEach(hole => {
-				hole.classList.remove('mole');
-				hole.removeEventListener(
-					'click', handleMoleClick);
-			});
+    let random = holes[Math.floor(Math.random() * 9)];
 
-			let random = holes[Math.floor(Math.random() * 9)];
-			
-			random.classList.add('mole');
+    random.classList.add("mole");
 
-			let randomImage = Math.random() < 0.5 ? "iyok.png" : "ipul.png";
-    		random.style.backgroundImage = `url("${randomImage}")`;
+    let randomImage = Math.random() < 0.5 ? "iyok.png" : "ipul.png";
+    random.style.backgroundImage = `url("${randomImage}")`;
 
-			random.addEventListener('click', handleMoleClick);
-		}
+    random.addEventListener("click", handleMoleClick);
+  }
 
-		function handleMoleClick() {
-			if (!gameOver) {
-				score++;
-				scoreDisplay.textContent = `Score: ${score}`;
-			}
-			this.classList.remove('mole');
-		}
+  function handleMoleClick() {
+    if (!gameOver) {
+      score++;
+      scoreDisplay.textContent = `Score: ${score}`;
 
-		function startGame() {
-			if (!gameOver) {
+      if (score > highscore) {
+        highscore = score;
+        highscoreDisplay.textContent = `Highscore: ${highscore}`;
+      }
+    }
+    this.classList.remove("mole");
+  }
 
-				// Prevent starting the game 
-				// again if it's already in progress 
-				return;
-			}
+  function startGame() {
+    if (!gameOver) {
+      // Prevent starting the game
+      // again if it's already in progress
+      return;
+    }
 
-			gameOver = false;
-			score = 0;
-			scoreDisplay.textContent = `Score: ${score}`;
-			timer = 60;
-			timerDisplay.textContent = `Time: ${timer}s`;
+    gameOver = false;
+    score = 0;
+    scoreDisplay.textContent = `Score: ${score}`;
+    timer = 60;
+    timerDisplay.textContent = `Time: ${timer}s`;
 
-			startButton.disabled = true;
-			endButton.disabled = false;
+    startButton.disabled = true;
+    endButton.disabled = false;
 
-			countdown = setInterval(() => {
-				timer--;
-				timerDisplay.textContent = `Time: ${timer}s`;
+    countdown = setInterval(() => {
+      timer--;
+      timerDisplay.textContent = `Time: ${timer}s`;
 
-				if (timer <= 0) {
-					clearInterval(countdown);
-					gameOver = true;
-					alert(`Game Over!\nYour final score: ${score}`);
-					startButton.disabled = false;
-					endButton.disabled = true;
-				}
-			}, 1000);
+      if (timer <= 0) {
+        clearInterval(countdown);
+        gameOver = true;
+        alert(`Game Over!\nYour final score: ${score}`);
+        startButton.disabled = false;
+        endButton.disabled = true;
+      }
+    }, 1000);
 
-			moleInterval = setInterval(() => {
-				if (!gameOver) comeout();
-			}, 1000);
+    moleInterval = setInterval(() => {
+      if (!gameOver) comeout();
+    }, 1000);
 
-			console.log("Game started");
-		}
+    console.log("Game started");
+  }
 
-		function endGame() {
-			clearInterval(countdown);
-			clearInterval(moleInterval);
-			gameOver = true;
-			alert(`Game Ended!\nYour final score: ${score}`);
-			score = 0;
-			timer = 60;
-			scoreDisplay.textContent = `Score: ${score}`;
-			timerDisplay.textContent = `Time: ${timer}s`;
-			startButton.disabled = false;
-			endButton.disabled = true;
-		}
+  function endGame() {
+    clearInterval(countdown);
+    clearInterval(moleInterval);
+    gameOver = true;
+    alert(`Game Ended!\nYour final score: ${score}`);
+    score = 0;
+    timer = 60;
+    scoreDisplay.textContent = `Score: ${score}`;
+    timerDisplay.textContent = `Time: ${timer}s`;
+    startButton.disabled = false;
+    endButton.disabled = true;
+  }
 
-		startButton.addEventListener("click", startGame);
-		endButton.addEventListener("click", endGame);
-	});
+  startButton.addEventListener("click", startGame);
+  endButton.addEventListener("click", endGame);
+});
