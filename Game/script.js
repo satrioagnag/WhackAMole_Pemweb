@@ -58,8 +58,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function startGame() {
     if (!gameOver) {
-      // Prevent starting the game
-      // again if it's already in progress
       return;
     }
 
