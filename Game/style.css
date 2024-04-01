@@ -34,7 +34,6 @@ body {
     display: none;
 }
 
-
 .game-container {
 	background-color: rgba(0, 128, 0, 0.397);
 	display: grid;
@@ -59,7 +58,7 @@ body {
 
 .mole {
 	background-size: 143px;
-	background-image: url("iyok.png"), url("ipul.png")
+	background-image: url("iyok.png")
 }
 
 .cursor {

@@ -40,9 +40,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     random.classList.add("mole");
 
-    let randomImage = Math.random() < 0.5 ? "iyok.png" : "ipul.png";
-    random.style.backgroundImage = `url("${randomImage}")`;
-
     random.addEventListener("click", handleMoleClick);
   }
 
